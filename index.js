@@ -1,0 +1,21 @@
+import { dbConnect } from "./src/config/database.js";
+import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import authRoutes from './src/routes/auth.routes.js'
+
+const app = express();
+const PORT = 5500;
+
+
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser()); 
+app.use("/api/auth", authRoutes);
+// app.use("/category",)
+
+await dbConnect();
+
+app.listen(PORT, ()=> console.log(`Server online en el puerto: ${PORT}`))
+
+
